@@ -1,4 +1,31 @@
 {% extends 'base.html' %} {% block content %}
+<nav
+  class="navbar navbar-expand-lg bg-body-tertiary"
+  style="background-color: #1588da"
+>
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page"
+          >Username Anda: {{ name }}</a
+        >
+        <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
 <h1>Shopping List Page</h1>
 
 <h5>Name:</h5>
@@ -22,6 +49,14 @@
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
     <td>{{product.date_added}}</td>
+    <td>
+      <a href="{% url 'main:edit_product' product.pk %}">
+        <button>Edit</button>
+      </a>
+      <a href="{% url 'main:delete_product' product.pk %}">
+        <button>Delete</button>
+      </a>
+    </td>
   </tr>
   {% endfor %}
 </table>
@@ -31,8 +66,8 @@
 <a href="{% url 'main:create_product' %}">
   <button>Add New Product</button>
 </a>
-<a href="{% url 'main:logout' %}">
+<!-- <a href="{% url 'main:logout' %}">
   <button>Logout</button>
-</a>
+</a> -->
 
 {% endblock content %}
